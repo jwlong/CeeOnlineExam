@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -20,11 +22,9 @@ public class UserController {
 
     @PostMapping ("/login")
     @ResponseBody
-    public Result login(@RequestBody User user){
-        User u = new User();
-        u.setUsername("aa");
-        u.setPassword("bb");
-        return Result.ok(u);
+    public Result login(User user){
+        Map<String,Object> info = userService.loginUser(user);
+        return Result.ok(info);
     }
 
 //    =======================================================================
@@ -42,6 +42,17 @@ public class UserController {
         User user = new User();
         user.setUsername(username);
         return userService.getUserList(user);
+    }
+
+
+    //获取用户id信息接口
+    @GetMapping("/info")
+    public Result getUserInfo(HttpServletRequest request) {
+       //
+        User user = new User();
+        user.setUsername("test");
+        user.setId(1L);
+        return Result.ok(user);
     }
 
     @GetMapping("/a/{username}")

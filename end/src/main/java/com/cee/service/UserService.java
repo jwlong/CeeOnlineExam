@@ -5,6 +5,7 @@ package com.cee.service;
 import com.cee.model.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     /**
@@ -26,4 +27,6 @@ public interface UserService {
     void updateUser (User user);
 
     void deleteUser(User user);
+
+    Map<String, Object> loginUser(User user);
 }

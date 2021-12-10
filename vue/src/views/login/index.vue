@@ -90,15 +90,16 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          // this.loading = true
-          // this.$store.dispatch('Login', this.loginForm).then(() => {
-          //   this.loading = false
-          //   this.$router.push({ path: this.redirect || '/' })
-          // }).catch(() => {
-          //   this.loading = false
-          // })
+           this.loading = true
+          this.$store.dispatch('Login', this.loginForm).then(() => {
 
-          loginService.login(this.loginForm).then(resp => {
+            this.loading = false
+            this.$router.push({ path: this.redirect || '/' })
+           }).catch(() => {
+             this.loading = false
+           })
+
+       /*   loginService.login(this.loginForm).then(resp => {
             debugger;
             console.log(resp);
 
@@ -111,7 +112,7 @@ export default {
           }).catch(err => {
              debugger;
              console.error(err);
-          });
+          });*/
 
         } else {
           console.log('error submit!!')
