@@ -46,6 +46,7 @@ const user = {
     // 获取用户信息
     GetInfo({ commit, state }) {
       const data = {'roles':'admin','name':'admin','avatar':'https://jw2021.oss-cn-hangzhou.aliyuncs.com/2021/01/29/12.jpg'}
+      //手动设置一下roles
       if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
         commit('SET_ROLES', data.roles)
       } else {
@@ -56,6 +57,7 @@ const user = {
        return new Promise((resolve, reject) => {
          getInfo(state.token).then(response => {
            const data = response.data
+           debugger
            if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
              commit('SET_ROLES', data.roles)
            } else {

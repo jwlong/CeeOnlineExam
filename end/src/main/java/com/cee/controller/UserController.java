@@ -47,6 +47,7 @@ public class UserController {
 
     //获取用户id信息接口
     @GetMapping("/info")
+    @ResponseBody
     public Result getUserInfo(HttpServletRequest request) {
        //
         User user = new User();
